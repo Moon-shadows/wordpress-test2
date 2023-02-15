@@ -1,0 +1,540 @@
+/*
+	Theme Name: Wordpress Test2
+	Theme URI: https://ohmy.co
+	Description:
+	Version: 0.0.1
+	Author: Oh My
+	Author URI: https://ohmy.co
+*/
+
+
+/*Basic Settings*/
+body {
+    background-color:whitesmoke;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+   }
+
+
+   
+p {
+    line-height: 1.5;
+   }
+
+   main {
+    margin: 0 auto;
+   }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  text-decoration: underline;
+}
+/*------------------------------------------------------*/
+
+/*****************  Mobile navigation **********************/
+/*  Slideout Menu  */
+  #slidout-menu {
+    display: none;
+    background: #2d3436;
+    z-index: 100;
+    position: fixed;
+    transition: 0.4s;
+    margin-top: 72px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #slidout-menu ul {
+    list-style: none;
+    padding: 0 32px;
+  }
+  #slidout-menu ul li {
+    padding: 8px;
+  }
+  #slidout-menu a {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    color: white;
+  }
+  #slidout-menu input {
+    width: 85%;
+    padding: 8px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    text-align: center;
+  }
+/*****************  Mobile navigation Done **********************/
+
+
+/*****************  Header **********************************************************************************************************/
+/*Navigation */
+/*Logo */
+#logo-image {
+  display: flex;
+  height: 100%;
+  
+  align-items: center;
+  transition: 0.4s;
+}
+#logo-image img {
+  height: 70px;
+}
+#logo-image img:hover {
+  background:pink;
+}
+/*Logo End*/
+
+/*Menu Bar */
+  nav {
+    height: 100px;
+    background-color: rgb(251, 224, 229);
+    width: 100%;
+    margin: 0;
+    position: fixed;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size:28px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+    z-index: 100;
+   }
+  nav a {
+    padding: 0 32px;
+    color: black;
+    transition: 0.4s;
+    text-decoration: none;
+  }
+  nav a:hover{
+    text-decoration: none;
+    color: rgba(44, 191, 217, 0.8);
+    text-decoration: underline;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+  }
+  .active {
+    color: rgb(243, 11, 185);
+  }
+/*Menu Bar End*/
+
+/*------------------------------------------------------*/
+/* Menu Icon  (Hamburgermenu)*/  
+  #menu-icon {
+    height: 100%;
+    font-size: 28px;
+    padding: 0 4px;
+    color: black;
+    display: none;
+    align-items: center;
+  }
+/*------------------------------------------------------*/
+/* Search Icon */
+  #search-icon {
+    color: black;
+    padding: 0 32px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  #search-icon:hover {
+   color: red;
+  }
+  
+  /*Searchbox */
+#searchbox{
+  position: fixed;
+  right: 0;
+  top: 24px;
+  width: 500px;
+  pointer-events: none;
+  z-index: 50;
+  transition: 0.4s;
+ }
+#searchbox input {
+  height: 50px;
+  width: 100%;
+ }
+input,
+textarea{
+  height: 32px;
+  padding: 0 16px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  border: none;
+ }
+input:focus,
+textarea:focus{
+  outline: none;
+ }
+ /*Menu Bar End */
+/*------------------------------------------------------*/
+
+
+/* Banner */
+   #banner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.2) url('img/jesus-loves-austin-TqHDqXkWSCk-unsplash.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: overlay;
+    color: white;
+   }
+
+ #banner h1 {
+    font-size: 65px;
+    width: 60%;
+    text-align: center;
+    margin-bottom: 0px;
+    position: absolute;
+    line-height: 1,25;
+    top: 300px;
+    background-color:rgba(163, 104, 104, 0.592);
+   }
+
+  #banner h3 {
+    font-size: 26px;
+    width: 60%;
+    text-align: center;
+    color: white;
+    font-weight: lighter;
+    position: absolute;
+    line-height: 1,25;
+    top: 500px;
+    background-color:rgba(163, 104, 104, 0.733);
+   }
+  /* Banner End */
+/*------------------------------------------------------*/
+
+
+  
+/* Main ***************************************************/
+/*  Test  */
+ #test {
+  display: flex;
+  justify-content: space-around;
+  column-gap: 10px;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 450px;
+
+ 
+}
+.card-test{
+  background-color: white;
+  border-radius: 15px;
+  width: 375px;
+  margin: 20px;
+}
+
+.card-image-test img {
+  width: 100%;
+  border-radius: 15px;
+  height: 220px;
+}
+.card-description-test {
+  text-align: center;
+ }
+.card-description-test h3{
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(195, 34, 34);
+}
+.btn-readmore-test {
+  padding: 8px;
+  border: 3px solid rgb(215, 27, 27);
+  border-radius: 20px;
+  transition: 0.4s;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgb(251, 21, 21);
+  width: 60%;
+  text-align: center;
+  color: white;
+  padding-bottom: 10px;
+}
+.btn-readmore-test:hover {
+background-color: white;
+color: red;
+text-decoration: none;
+padding: 8px 64px 8px 24px;
+}
+/*------------------------------------------------------*/
+
+
+
+ /*  Section  */
+
+ .section-heading-news, .section-heading{
+  margin-top: 50px;
+ 
+ }
+
+
+  .section-heading-news, .section-heading{
+    font-size: 32px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  rgb(243, 11, 185);
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    transition: all 0.4s;
+    display: inline-block;
+    padding: 4px 32px;
+  }
+  
+  .section-heading:hover {
+    padding: 4px 48px;
+    background: pink;
+  }
+
+  section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   }
+
+/*  Sectin Source  */
+    #section-source {
+        display: flex;
+        flex-direction: column;
+    }
+      #section-source p {
+            padding: 8px;
+            text-align: center;
+      }
+      #section-source a {
+        margin: 8px;
+        text-align: center;
+      }
+
+/*  Card  */
+  .card-image {
+    transition: 0.4s;
+  }
+
+  .card-image:hover {
+    box-shadow: 0 10px 6px -6px black;
+  }
+
+  .card-description {
+    padding: 0 8px;
+  }
+
+  /*  Button Read more */
+  .btn-readmore {
+    padding: 8px 24px;
+    border: 3px solid black;
+    transition: 0.4s;
+    display: inline-block;
+    margin-bottom: 24px;
+    margin-left: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+  }
+  .btn-readmore:hover {
+    background-color: pink;
+    text-decoration: none;
+    padding: 8px 64px 8px 24px;
+  }
+/*------------------------------------------------------*/  
+
+/* Footer */
+    footer {
+      background-color:  pink;
+      color: rgb(59, 38, 38);
+      padding: 8px;
+      display: flex;
+    }
+    footer a {
+      color: rgb(59, 38, 38);
+    }
+
+/* Left Footer */
+    footer #left-footer {
+      flex: 1;
+      border-right: 1px solid rgba(44, 191, 217, 0.8);
+      padding-left: 32px;
+    }
+    footer #left-footer ul{
+      padding: 0;
+      list-style: none;
+      line-height: 1.5;
+    }
+
+/* Right Footer */
+    footer #right-footer{
+      flex: 2;
+      padding: 8px;
+      text-align: center;
+    }
+    footer #social-media-footer ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      padding: 0;
+    }
+    footer #social-media-footer ul li{
+      font-size: 40px;
+      padding: 16px;
+      transition: 0.4s;
+    }
+    footer #social-media-footer ul li:hover a .fa-facebook {
+      color: red;
+    }
+    footer #social-media-footer ul li:hover a .fa-youtube {
+      color: #3b5998;
+    }
+    footer #social-media-footer ul li:hover a .fa-github{
+      color: #bbb;
+    }
+    footer #social-media-footer a .fa-facebook,
+    footer #social-media-footer a .fa-youtube,
+    footer #social-media-footer a .fa-github {
+      color: black;
+      transition: 0.4s;
+    }
+/*------------------------------------------------------*/
+/*  Media Queries (max-width) */
+@media(max-width: 1200px) {
+  #banner h1 {
+    font-size: 50px;
+    width: 60%;
+    margin-top: 200px;
+  }
+
+  #banner {
+    margin-bottom: 320px;
+  }
+}
+
+
+@media(max-width: 900px) {
+  nav ul{
+      display: none;
+  }
+
+  #menu-icon{
+      display: flex;
+  }
+  
+  nav {
+    height: 80px;
+  }
+  
+  #searchbox{
+      display: none;
+  }
+    #slidout-menu{
+      display: block;
+  }
+
+  #logo-image img {
+    height: 50px;
+  }
+}
+
+
+@media(max-width: 719px) {
+  main{
+      width: 95%;
+  }
+    
+  section{
+      flex-direction: column;
+  }
+
+  .card,
+  .card .card-image img {
+    width: 100%;
+  }
+
+  footer {
+      flex-direction: column;
+      text-align: center;
+  }
+  footer #left-footer {
+      flex:1;
+      border-right: 0;
+      padding-left: 0;
+  }
+  footer #right-footer {
+      background: #eee;
+      color: rgb(59, 38, 38);
+  }
+}
+
+@media(max-width: 600px) {
+  main{
+      width: 100%;
+  }
+  
+  .card {
+      text-align: center;
+  }
+
+  logo-image {
+      padding: 0;
+  }
+
+  #banner h3{
+      font-size: 20px;
+  }
+}
+/*------------------------------------------------------*/
+
+
+/*  Media Queries (min-width) */
+@media(min-width: 720px){
+  main{
+      width: 95%;
+  }
+  .card {
+      width: 45%;
+  }
+  .card .card-image img {
+      width: 100%;
+  }
+
+@media(min-width: 1200px) {
+  main {
+      width: 85%;
+  }
+}
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

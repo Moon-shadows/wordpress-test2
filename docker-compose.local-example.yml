@@ -1,0 +1,5 @@
+version: '3'
+services:
+    apachephp:
+        environment:
+            ENV_VAR_I_WANT_TO_CHANGE: somevalue

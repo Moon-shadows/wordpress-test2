@@ -1,0 +1,43 @@
+{
+  "name": "wordpress-test2",
+  "private": "true",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "cross-env NODE_ENV=production vite build",
+    "serve": "vite preview",
+    "build-debug": "cross-env NODE_ENV=production vite build --debug"
+  },
+
+  "dependencies": {
+    "@babel/standalone": "7.18.12",
+    "@vitejs/plugin-legacy": "^2.0.0",
+    "autoprefixer": "^10.2.4",
+    "axios": "^0.27.2",
+    "postcss": "^8.2.6",
+    "lazysizes": "^5.3.0",
+    "vue": "^3.2.37"
+  },
+
+  "devDependencies": {
+
+    "@vitejs/plugin-vue": "^3.0.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.4.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^14.0.0",
+    "postcss-nested": "^5.0.3",
+    "postcss-preset-env": "^7.7.2",
+    "prettier": "2.7.1",
+
+    "vite": "^3.0.0",
+    "vite-plugin-live-reload": "^3.0.0",
+    "vite-plugin-windicss": "^1.8.7"
+
+  }
+
+}
+

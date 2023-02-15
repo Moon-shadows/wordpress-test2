@@ -1,0 +1,45 @@
+# Enable brotli compression for relevant content types
+AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/json
+
+# Don't let anyone put this site in an iframe etc. If
+# exceptions are needed for specific URLs, then make
+# exceptions, don't just remove the header completely.
+# More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+Header set X-Frame-Options "deny"
+
+# Don't let Wordpress handle 404s for static files
+# BEGIN 404Static
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !((wp-(content|admin|includes).*)|robots\.txt|[a-z0-9_\-]*sitemap[a-z0-9_\-]*\.(xml|xsl|html)(\.gz)?)
+RewriteCond %{REQUEST_URI} \.(css|js|html|htm|svg|txt|bmp|eot|gif|ico|jpg|jpeg|webp|otf|_otf|pdf|png|pot|swf|tif|tiff|ttf|_ttf|woff|woff2)$ [NC]
+RewriteRule .* - [L]
+</IfModule>
+# END 404Static
+
+# Keep static assets cached
+<FilesMatch ".+\.(css|js|jpg|jpeg|png|gif|ico|svg|mp4|ttf|woff|woff2|otf)$">
+Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# Block access to XML-RPC
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+</Files>
+
+# Stop Outlook from causing unnecessary load
+Redirect 204 /autodiscover/autodiscover.xml
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

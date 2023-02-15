@@ -1,0 +1,52 @@
+# Project config
+# Documentation: https://wiki.ohmyhosting.se/project-config
+
+project_name: Wordpress Test2
+project_type: wordpress
+
+# We install Composer packages and run frontend build when building Docker image
+skip_composer: true
+skip_frontend_build: true
+
+# Basic auth on stage, remove/comment out if you're sure that you do not want this
+stage_auth_username: demo
+stage_auth_password: EkLJBGWmHyvyAWrAyaku
+stage_auth_exception_regex: wp-content/uploads/|/assets/
+
+# Set the following to true when it's time go live (not before),
+# and only if we should actually host this project
+production_in_cluster: false
+
+branch:
+  develop: {}
+  feature/*: {}
+  master: {}
+
+services:
+  web:
+    target_port: 8000 # Apache in the container listens on port 8000
+    add_to_lb: false
+    persistent_storage:
+      uploads: /app/web/wp-content/uploads
+      languages: /app/web/wp-content/languages
+    env:
+      OHMY_THUMBIFY_USE_IMAGE_SERVER: true
+      VARNISH_HOST: service:varnish
+
+  varnish:
+    add_to_lb: true
+    domain: test.ohmy.se
+    ssl: true
+    redirect_to_ssl: true
+    env:
+      VARNISH_BACKEND_HOST: service:web
+    image: 804184259518.dkr.ecr.eu-central-1.amazonaws.com/ohmy-wordpress-varnish
+
+    # The following line will cause the Varnish cache to be eliminated on deploy, which is convenient in most projects
+    force_update: true
+
+  redis:
+    image: 804184259518.dkr.ecr.eu-central-1.amazonaws.com/ohmy-redis-cache
+
+    # The following line will cause the Redis cache to be eliminated on deploy, which is convenient in most projects
+    force_update: true

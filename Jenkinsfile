@@ -1,0 +1,4 @@
+#!groovy
+wordpressBuild {
+
+}

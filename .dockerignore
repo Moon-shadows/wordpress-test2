@@ -1,0 +1,10 @@
+node_modules/
+build_tmp/
+.env
+.git
+.env.example
+.gitignore
+Jenkinsfile
+project.json
+project.yaml
+web/wp-content/uploads/

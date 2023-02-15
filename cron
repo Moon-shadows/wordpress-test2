@@ -1,0 +1,1 @@
+*/10 * * * * /app/vendor/bin/wp --path='/app/web/wp' cron event run --due-now

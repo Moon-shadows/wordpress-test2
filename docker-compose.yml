@@ -1,0 +1,94 @@
+# If you want to make local changes (that won't effect everyone),
+# please create a docker-compose.local.yml file instead
+version: '3'
+services:
+  apachephp:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: wordpress-test2_apachephp
+    ports:
+      - "127.0.0.1:80:8000"
+      - "127.0.0.1:443:8443"
+    volumes:
+      - "./:/app"
+      - "./assets:/app/web/assets"
+      - "./docker/supervisor.d:/etc/supervisor/conf.d/"
+      - "./docker/profiling:/tmp/profiling"
+    environment:
+      XDEBUG_REMOTE_HOST: 172.18.0.1
+      XDEBUG_MAX_NESTING_LEVEL: 500
+      PHP_MAX_EXECUTION_TIME: 180
+      PHP_PROCESS_IDLE_TIMEOUT: 180
+      PHP_MEMORY_LIMIT: 512M
+      WEBROOT: /app/web
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+      OHMY_THUMBIFY_USE_IMAGE_SERVER: "true"
+      OHMY_THUMBIFY_IMAGE_SERVER_URL: http://127.0.0.1:8888
+      OHMY_THUMBIFY_IMAGE_SERVER_KEY: testkey
+      OHMY_THUMBIFY_SOURCE_PORT: 8000
+    restart: on-failure
+
+  redis:
+    image: ohmy/redis-cache:latest
+    container_name: wordpress-test2_redis
+    ports:
+      - "127.0.0.1:6379:6379"
+    restart: on-failure
+
+  mysql:
+    image: mariadb:10.2
+    container_name: wordpress-test2_mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    env_file:
+      - .env
+    restart: on-failure
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  thumbor:
+    image: ohmy/thumbor
+    container_name: wordpress-test2_thumbor
+    # The ohmy/thumbor container is run as a non-root by default. Locally this causes permission issues with the Docker volume
+    # since the default user does not have write permissions in the volume. The easiest fix for this is to run thumbor as root
+    # within the container. Since this is done locally (and not in any publicly accessible service) it is not a security concern.
+    user: root
+    ports:
+      - "127.0.0.1:8888:8000"
+    volumes:
+      - "thumbor_data:/data"
+      - "thumbor_logs:/logs"
+    environment:
+      USE_GIFSICLE_ENGINE: "True"
+      ALLOW_UNSAFE_URL: "True"
+      SECURITY_KEY: testkey
+      DETECTORS: "['thumbor.detectors.face_detector','thumbor.detectors.feature_detector']"
+      STORAGE: thumbor.storages.mixed_storage
+      RESULT_STORAGE: thumbor.result_storages.file_storage
+      MIXED_STORAGE_FILE_STORAGE: thumbor.storages.file_storage
+      MIXED_STORAGE_DETECTOR_STORAGE: thumbor.storages.file_storage
+      RESULT_STORAGE_STORES_UNSAFE: "True"
+      STORAGE_EXPIRATION_SECONDS: 2592000
+      RESULT_STORAGE_EXPIRATION_SECONDS: 2592000
+      AUTO_WEBP: "True"
+      LOG_LEVEL: DEBUG
+    external_links:
+      # This is boring, but for Thumbor to work you need to map
+      # your local dev domain to the apachephp container.
+      # Otherwise Thumbor won't be able to fetch the original image.
+      - wordpress-test2_apachephp:wordpress-test2.test
+    restart: on-failure
+
+volumes:
+  mysql_data:
+  thumbor_data:
+    driver: local
+  thumbor_logs:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: dockerdevenvironment_default
