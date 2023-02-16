@@ -41,22 +41,22 @@
 <body <?php body_class(); ?>>
 
 
-
+<!------------------------------------------------------------------------------------------> 
 <!--Mobile navigation Menu (outside Navigation Bar)--> 
 <!--Slidout Menu (Hamburger Menu)--> 
     <div id="slidout-menu">
       <ul>
         <li>
-          <a href="#">Home</a>
+          <a href="<?php echo site_url(); ?>">Home</a>
         </li>
         <li>
-          <a href="#">Blog</a>
+        <a href="<?php echo site_url('/blog'); ?>">Blog</a>
         </li>
         <li>
-          <a href="#">Projects</a>
+        <a href="<?php echo site_url('/projects'); ?>">Projects</a>
         </li>
         <li>
-          <a href="#">About</a>
+        <a href="<?php echo site_url('/about'); ?>">About</a>
         </li>
         <li>
           <input type="text" placeholder="Search Here">
@@ -82,17 +82,17 @@
         <i class="fa-solid fa-bars"></i>
       </div>
       <ul>
-        <li>
-          <a class="active" href="#">Start</a>
+      <li>
+          <a class="active"  href="<?php echo site_url(); ?>">Home</a>
         </li>
         <li>
-          <a href="#">Om oss</a>
+        <a href="<?php echo site_url('/blog'); ?>">Blog</a>
         </li>
         <li>
-          <a href="#">Engagemang</a>
+        <a href="<?php echo site_url('/projects'); ?>">Projects</a>
         </li>
         <li>
-          <a href="#">Kontakt</a>
+        <a href="<?php echo site_url('/about'); ?>">About</a>
         </li>
         <li>
         <div id="search-icon">

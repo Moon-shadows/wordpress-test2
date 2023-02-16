@@ -13,7 +13,7 @@ $blogposts = new WP_Query($args);
 
 while($blogposts->have_posts()) {
     $blogposts->the_post();
-    echo "hi<br>";
+    echo "hihihi<br>";
 ?>
 
 
